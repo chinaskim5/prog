@@ -36,3 +36,34 @@ void int_vector_free(IntVector *v){
 		free(v);
 	}
 }
+IntVector *int_vector_copy(const IntVector *v){
+	IntVector *copy=int_vector_new(v->capacity);
+	if(!copy){
+		return NULL;
+	}	
+	else{
+		memcpy (copy->data,v->data,v->size);
+		return copy;
+	}
+}
+int int_vector_push_back(IntVector *v, int item){
+	if(v->capacity == v->size){
+		v=realloc(v, v->capacity *2);
+		if(!v){
+			return -1;
+		}
+		v->capacity*=2;
+	}
+	v->data[v->size++]=item;
+
+	return 0;
+}
+void int_vector_pop_back(IntVector *v){
+	if(v->size == 0){
+		printf("Нет эффекта\n");
+	}
+	else{
+		 v->data[v->size--]=0;
+	}
+}
+
