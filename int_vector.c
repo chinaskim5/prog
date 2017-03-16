@@ -66,4 +66,52 @@ void int_vector_pop_back(IntVector *v){
 		 v->data[v->size--]=0;
 	}
 }
+int int_vector_get_item(const intVector *v, size_t index) {
+	if (index > (v->size))
+		return NULL;
+	else{
+		return v->data[index];
+	}	
+}
+void int_vector_set_item(intVector *v, size_t index, int item) {
+	if (index > (v->size))
+		return NULL;
+	else {
+		v->data[index]=item;
+	}
+}
+int int_vector_shrink_to_fit(intVector *v) {
+	v=realloc(v,v->size);
+	if (v->capacity == v->size )
+		return 0;
+	else
+		return -1;
+}
+int int_vector_reserve(intVector *v, size_t new_capacity) {
+	if ( new_capacity <= v->capacity )
+		return -1;
+	else 
+		v=realloc(v,new_capacity);
+		v->capacity=new_capacity;
+		return 0;
+}
+int int_vector_resize(intVector *v, size_t new_size) {
+	int b=0;
+	if (v->size > new_size ){
+		v->size = new_size;
+		b=int_vector_shrink_to_fit(v);
+		return b;	
+	}
+	else {
+		b=int_vector_reserve(v,new_size)'
+		for ( int i = v->size;i < new_size;i++){
+			v->data[i]=0;
+			v->size++;
+		}
+		v->size=new_size;
+	}
+	return b;
+}
+
+
 
