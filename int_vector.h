@@ -17,10 +17,10 @@ size_t int_vector_get_capacity(const IntVector *v);
 IntVector *int_vector_copy(const IntVector *v);
 int int_vector_push_back(IntVector *v, int item);
 void int_vector_pop_back(IntVector *v);
-int int_vector_get_item(const intVector *v, size_t index);
-void int_vector_set_item(intVector *v, size_t index, int item);
-int int_vector_shrink_to_fit(intVector *v);
-int int_vector_reserve(intVector *v, size_t new_capacity);
-int int_vector_resize(intVector *v, size_t new_size);
+int int_vector_get_item(const IntVector *v, size_t index);
+void int_vector_set_item(IntVector *v, size_t index, int item);
+int int_vector_shrink_to_fit(IntVector *v);
+int int_vector_reserve(IntVector *v, size_t new_capacity);
+int int_vector_resize(IntVector *v, size_t new_size);
 
 #endif

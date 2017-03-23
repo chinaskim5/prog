@@ -16,7 +16,7 @@ size_t int_vector_get_size(const IntVector *v){
 	if (v->size){
 		return v->size;
 	}else {
-		printf("error\n");
+		
 		return 0;
 	}
 }
@@ -25,7 +25,7 @@ size_t int_vector_get_capacity(const IntVector *v){
 	if (v->capacity){
 		return v->capacity;
 	}else {
-		printf("error\n");
+	
 		return 0;
 	}
 }
@@ -63,31 +63,29 @@ void int_vector_pop_back(IntVector *v){
 		printf("Нет эффекта\n");
 	}
 	else{
-		 v->data[v->size--]=0;
+		v->data[v->size--]=0;
 	}
 }
-int int_vector_get_item(const intVector *v, size_t index) {
-	if (index > (v->size))
-		return NULL;
+int int_vector_get_item(const IntVector *v, size_t index) {
+	if (index > (v->size)){
+		return 0;
+		}
 	else{
 		return v->data[index];
 	}	
 }
-void int_vector_set_item(intVector *v, size_t index, int item) {
-	if (index > (v->size))
-		return NULL;
-	else {
+void int_vector_set_item(IntVector *v, size_t index, int item) {
+	if (!(index > (v->size)))
 		v->data[index]=item;
-	}
 }
-int int_vector_shrink_to_fit(intVector *v) {
+int int_vector_shrink_to_fit(IntVector *v) {
 	v=realloc(v,v->size);
 	if (v->capacity == v->size )
 		return 0;
 	else
 		return -1;
 }
-int int_vector_reserve(intVector *v, size_t new_capacity) {
+int int_vector_reserve(IntVector *v, size_t new_capacity) {
 	if ( new_capacity <= v->capacity )
 		return -1;
 	else 
@@ -95,16 +93,16 @@ int int_vector_reserve(intVector *v, size_t new_capacity) {
 		v->capacity=new_capacity;
 		return 0;
 }
-int int_vector_resize(intVector *v, size_t new_size) {
-	int b=0;
+int int_vector_resize(IntVector *v, size_t new_size) {
+	int b=0,i;
 	if (v->size > new_size ){
 		v->size = new_size;
 		b=int_vector_shrink_to_fit(v);
 		return b;	
 	}
 	else {
-		b=int_vector_reserve(v,new_size)'
-		for ( int i = v->size;i < new_size;i++){
+		b=int_vector_reserve(v,new_size);
+		for (i=v->size;i < new_size;i++){
 			v->data[i]=0;
 			v->size++;
 		}
